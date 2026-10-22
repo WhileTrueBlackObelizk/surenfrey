@@ -1,0 +1,5 @@
+# Alle Suchmaschinen dürfen alles lesen.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.surenfrey.de/sitemap.xml

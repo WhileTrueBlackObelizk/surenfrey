@@ -1,0 +1,455 @@
+<!doctype html>
+<!--
+   ____                          _____
+  / ___| _   _ _ __ ___ _ __    |  ___| __ ___ _   _
+  \___ \| | | | '__/ _ \ '_ \   | |_ | '__/ _ \ | | |
+   ___) | |_| | | |  __/ | | |  |  _|| | |  __/ |_| |
+  |____/ \__,_|_|  \___|_| |_|  |_|  |_|  \___|\__, |
+                                                |___/
+  Du liest Quelltext von 404-Seiten? Wir sollten reden: info.surenfrey@gmail.com
+-->
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Xz/ffLxefMz8NFcbRw++7sQemjXBMS85nntA+1Gz8wI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 – Seite nicht gefunden | Suren Frey</title>
+    <meta name="description" content="Diese Seite gibt es nicht. Zurück zur Startseite oder eine Runde Bug-Jagd spielen." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23CCFF00'/%3E%3Ctext x='32' y='43' font-family='monospace' font-weight='700' font-size='30' text-anchor='middle' fill='%230A0A0A'%3E404%3C/text%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --bg: #0b0b0f;
+        --panel: #141419;
+        --line: #2a2a33;
+        --text: #e4e4e7;
+        --muted: #a1a1aa;
+        --signal: #ccff00;
+        --error: #ff7a7a;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+      }
+      a { color: var(--signal); }
+      :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+      .skip-link {
+        position: absolute; top: 8px; left: 8px; z-index: 10;
+        padding: 12px 16px; border-radius: 10px;
+        background: var(--signal); color: #0a0a0a; font-weight: 700;
+        transform: translateY(-200%);
+      }
+      .skip-link:focus { transform: none; }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+      }
+      main { width: 100%; max-width: 760px; margin: 0 auto; padding: 40px 16px 24px; }
+      main:focus { outline: none; }
+
+      h1 { margin: 0; line-height: 1; }
+      .code {
+        display: block;
+        font-family: var(--mono);
+        font-size: clamp(4.5rem, 22vw, 9rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: var(--signal);
+      }
+      .code .cursor { animation: blink 1.1s steps(1) infinite; }
+      .title { display: block; margin-top: 12px; font-size: clamp(1.4rem, 5vw, 2rem); }
+      .lead { margin: 16px 0 0; max-width: 560px; color: var(--muted); font-size: 1.05rem; }
+
+      .terminal {
+        margin: 28px 0 0;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+        overflow: hidden;
+      }
+      .terminal-bar {
+        display: flex; align-items: center; gap: 8px;
+        padding: 10px 14px; border-bottom: 1px solid var(--line);
+        font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+      }
+      .dot { width: 12px; height: 12px; border-radius: 50%; background: #3f3f46; }
+      .dot:nth-child(1) { background: #ff5f57; }
+      .dot:nth-child(2) { background: #febc2e; }
+      .dot:nth-child(3) { background: #28c840; }
+      .terminal-bar span:last-child { margin-left: 8px; }
+      .terminal-body {
+        margin: 0; padding: 16px 18px;
+        font-family: var(--mono); font-size: 0.9rem; line-height: 1.7;
+        white-space: pre-wrap; word-break: break-all;
+      }
+      .prompt { color: var(--signal); }
+      .err { color: var(--error); }
+      .muted { color: var(--muted); }
+      .line { display: block; }
+      .js .line.pending { visibility: hidden; }
+
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        min-height: 48px; padding: 12px 20px;
+        border: 1px solid #71717a; border-radius: 12px;
+        background: transparent; color: var(--text);
+        font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+      }
+      .btn:hover { border-color: var(--signal); }
+      .btn.primary { background: var(--signal); border-color: var(--signal); color: #0a0a0a; }
+
+      .game { margin-top: 56px; }
+      .game h2 { margin: 0 0 4px; font-size: 1.4rem; }
+      .game p { margin: 0 0 16px; color: var(--muted); }
+      .game kbd {
+        padding: 1px 6px; border: 1px solid var(--line); border-radius: 6px;
+        background: var(--panel); color: var(--text); font-family: var(--mono); font-size: 0.85em;
+      }
+      .board-wrap { position: relative; width: 100%; max-width: 440px; }
+      canvas {
+        display: block; width: 100%; height: auto; aspect-ratio: 1;
+        border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+        touch-action: none;
+      }
+      .hud {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+        max-width: 440px; margin: 12px 0 0;
+        font-family: var(--mono); font-size: 0.95rem;
+      }
+      .hud strong { color: var(--signal); }
+      .message { min-height: 1.6em; max-width: 440px; margin: 8px 0 0; font-weight: 600; }
+      .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 12px; }
+      .pad { display: grid; grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(2, 48px); gap: 6px; }
+      .pad button {
+        border: 1px solid #71717a; border-radius: 10px;
+        background: var(--panel); color: var(--text);
+        font-size: 1.2rem; cursor: pointer;
+      }
+      .pad button:active { background: var(--line); }
+      .pad .up { grid-column: 2; grid-row: 1; }
+      .pad .left { grid-column: 1; grid-row: 2; }
+      .pad .down { grid-column: 2; grid-row: 2; }
+      .pad .right { grid-column: 3; grid-row: 2; }
+
+      footer { padding: 24px 16px 32px; text-align: center; color: var(--muted); font-family: var(--mono); font-size: 0.85rem; }
+      footer a { color: var(--muted); }
+
+      @keyframes blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .code .cursor { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+    <main id="inhalt" tabindex="-1">
+      <h1>
+        <span class="code" aria-hidden="true">404<span class="cursor">_</span></span>
+        <span class="title"><span class="sr-only">Fehler 404: </span>Seite nicht gefunden</span>
+      </h1>
+      <p class="lead">
+        Diese Seite gibt es nicht. Vielleicht hat sich ein Tippfehler eingeschlichen, oder der Link ist veraltet.
+        Falls es doch ein Bug ist, kümmere ich mich darum.
+      </p>
+
+      <div class="terminal">
+        <div class="terminal-bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span>suren@frey: ~</span>
+        </div>
+        <p class="terminal-body"><span class="line"><span class="prompt">suren@frey:~$</span> cd <span data-path>/diese-seite</span></span><span class="line err">bash: cd: <span data-path>/diese-seite</span>: No such file or directory</span><span class="line"><span class="prompt">suren@frey:~$</span> echo $?</span><span class="line">404</span><span class="line"><span class="prompt">suren@frey:~$</span> cd ~ <span class="muted"># zurück nach Hause ↓</span></span></p>
+      </div>
+
+      <nav class="actions" aria-label="Weiter">
+        <a class="btn primary" href="/" data-home>Zur Startseite</a>
+        <a class="btn" href="/personal-training/" data-home="personal-training/">Coaching</a>
+        <a class="btn" href="/informatik/" data-home="informatik/">Informatik</a>
+      </nav>
+
+      <section class="game" aria-labelledby="game-title">
+        <h2 id="game-title">Bug-Jagd</h2>
+        <p>
+          Wenn du schon mal hier bist, kannst du ein paar Bugs fangen, bevor sie in Produktion landen.
+          Steuerung mit <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> oder <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>,
+          Pause mit <kbd>Leertaste</kbd>. Auf dem Handy wischen oder die Pfeiltasten unten nutzen.
+        </p>
+        <div class="board-wrap">
+          <canvas id="board" width="440" height="440" role="img" aria-label="Spielfeld von Bug-Jagd: Eine Schlange sammelt Bugs ein. Das Spiel ist optional und für die Nutzung der Website nicht nötig."></canvas>
+        </div>
+        <div class="hud">
+          <span>Bugs gefixt: <strong id="score">0</strong></span>
+          <span>Rekord: <strong id="best">0</strong></span>
+        </div>
+        <p class="message" id="message" role="status" aria-live="polite"></p>
+        <div class="controls">
+          <button type="button" class="btn primary" id="toggle">Spiel starten</button>
+          <div class="pad" role="group" aria-label="Richtung">
+            <button type="button" class="up" data-dir="up" aria-label="Hoch">↑</button>
+            <button type="button" class="left" data-dir="left" aria-label="Links">←</button>
+            <button type="button" class="down" data-dir="down" aria-label="Runter">↓</button>
+            <button type="button" class="right" data-dir="right" aria-label="Rechts">→</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span aria-hidden="true">// </span>selbst gebaut von Suren Frey · <a href="/impressum/" data-home="impressum/">Impressum</a> · <a href="/datenschutz/" data-home="datenschutz/">Datenschutz</a>
+    </footer>
+
+    <script>
+      (() => {
+        document.documentElement.classList.add('js');
+
+        // --- Pfade: auf github.io liegt die Seite in einem Unterordner (/<repo>/) ----------
+        const parts = location.pathname.split('/').filter(Boolean);
+        const base = location.hostname.endsWith('github.io') && parts.length ? `/${parts[0]}/` : '/';
+        document.querySelectorAll('[data-home]').forEach((a) => {
+          a.href = base + (a.dataset.home || '');
+        });
+
+        // --- gesuchte Adresse im Terminal anzeigen (nur als Text, nie als HTML) -----------
+        let wanted = location.pathname;
+        try { wanted = decodeURIComponent(wanted); } catch (e) { /* kaputte Kodierung: roh anzeigen */ }
+        if (base !== '/' && wanted.startsWith(base)) wanted = '/' + wanted.slice(base.length);
+        if (wanted.length > 60) wanted = wanted.slice(0, 57) + '...';
+        document.querySelectorAll('[data-path]').forEach((el) => { el.textContent = wanted || '/'; });
+
+        // --- Terminal-Zeilen nacheinander einblenden (nicht bei reduzierter Bewegung) -----
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) {
+          const lines = [...document.querySelectorAll('.terminal-body .line')];
+          lines.forEach((l) => l.classList.add('pending'));
+          lines.forEach((l, i) => setTimeout(() => l.classList.remove('pending'), 250 + i * 380));
+        }
+
+        // --- Grüße an alle, die die Konsole öffnen ----------------------------------------
+        console.log(
+          '%c SF_ %c 404 – aber du hast die Konsole gefunden. Respekt.\n' +
+          'Lust auf ein Projekt oder ein Training? → info.surenfrey@gmail.com',
+          'background:#ccff00;color:#0a0a0a;font-weight:700;padding:2px 6px;border-radius:4px',
+          'color:inherit'
+        );
+
+        // --- Bug-Jagd ---------------------------------------------------------------------
+        const canvas = document.getElementById('board');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const bestEl = document.getElementById('best');
+        const messageEl = document.getElementById('message');
+        const toggle = document.getElementById('toggle');
+
+        const N = 20; // Felder pro Seite
+        const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+        const KEYS = {
+          ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
+          w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right',
+        };
+        const QUIPS = [
+          '10 Kniebeugen, dann Revanche?',
+          '30 Sekunden Plank – und nochmal!',
+          'Kurze Trinkpause, dann geht es weiter.',
+          'Kurz durchatmen, dann noch mal.',
+          'Das war das Aufwärmen. Die nächste Runde wird besser.',
+        ];
+
+        let snake, dir, queue, bug, score = 0, best = 0, state = 'idle', timer = null, speed;
+        let cell = 22;
+
+        const resize = () => {
+          const dpr = window.devicePixelRatio || 1;
+          const size = canvas.getBoundingClientRect().width || 440;
+          canvas.width = Math.round(size * dpr);
+          canvas.height = Math.round(size * dpr);
+          cell = canvas.width / N;
+          draw();
+        };
+
+        const freeCell = () => {
+          let p;
+          do { p = [Math.floor(Math.random() * N), Math.floor(Math.random() * N)]; }
+          while (snake.some(([x, y]) => x === p[0] && y === p[1]));
+          return p;
+        };
+
+        const reset = () => {
+          snake = [[8, 10], [7, 10], [6, 10], [5, 10]];
+          dir = 'right';
+          queue = [];
+          bug = freeCell();
+          score = 0;
+          speed = 140;
+          scoreEl.textContent = '0';
+        };
+
+        const setState = (next) => {
+          state = next;
+          toggle.textContent = { idle: 'Spiel starten', running: 'Pause', paused: 'Weiter', over: 'Nochmal spielen' }[next];
+          clearInterval(timer);
+          if (next === 'running') timer = setInterval(step, speed);
+          draw();
+        };
+
+        const turn = (next) => {
+          if (state !== 'running') return;
+          const last = queue.length ? queue[queue.length - 1] : dir;
+          const [lx, ly] = DIRS[last];
+          const [nx, ny] = DIRS[next];
+          if (next === last || (lx === -nx && ly === -ny)) return; // keine Kehrtwende
+          if (queue.length < 2) queue.push(next);
+        };
+
+        const step = () => {
+          if (queue.length) dir = queue.shift();
+          const [dx, dy] = DIRS[dir];
+          const head = [snake[0][0] + dx, snake[0][1] + dy];
+          const hitWall = head[0] < 0 || head[1] < 0 || head[0] >= N || head[1] >= N;
+          const hitSelf = snake.slice(0, -1).some(([x, y]) => x === head[0] && y === head[1]);
+          if (hitWall || hitSelf) {
+            best = Math.max(best, score);
+            bestEl.textContent = String(best);
+            messageEl.textContent = `Game over – ${score} ${score === 1 ? 'Bug' : 'Bugs'} gefixt. ${QUIPS[Math.floor(Math.random() * QUIPS.length)]}`;
+            setState('over');
+            return;
+          }
+          snake.unshift(head);
+          if (head[0] === bug[0] && head[1] === bug[1]) {
+            score += 1;
+            scoreEl.textContent = String(score);
+            bug = freeCell();
+            speed = Math.max(70, speed - 4); // wird schneller
+            clearInterval(timer);
+            timer = setInterval(step, speed);
+          } else {
+            snake.pop();
+          }
+          draw();
+        };
+
+        const drawBug = (gx, gy) => {
+          const cx = (gx + 0.5) * cell;
+          const cy = (gy + 0.5) * cell;
+          const r = cell * 0.28;
+          ctx.strokeStyle = '#ff7a7a';
+          ctx.lineWidth = Math.max(1, cell * 0.07);
+          ctx.lineCap = 'round';
+          for (const s of [-1, 1]) {
+            for (const o of [-0.5, 0, 0.5]) {
+              ctx.beginPath();
+              ctx.moveTo(cx + s * r * 0.6, cy + o * r);
+              ctx.lineTo(cx + s * r * 1.5, cy + o * r * 1.6);
+              ctx.stroke();
+            }
+            ctx.beginPath();
+            ctx.moveTo(cx + s * r * 0.3, cy - r * 0.9);
+            ctx.lineTo(cx + s * r * 0.8, cy - r * 1.6);
+            ctx.stroke();
+          }
+          ctx.fillStyle = '#ff7a7a';
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, r * 0.75, r, 0, 0, Math.PI * 2);
+          ctx.fill();
+        };
+
+        const roundRect = (x, y, w, h, rad) => {
+          ctx.beginPath();
+          ctx.roundRect ? ctx.roundRect(x, y, w, h, rad) : ctx.rect(x, y, w, h);
+          ctx.fill();
+        };
+
+        function draw() {
+          if (!snake) reset();
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          // Raster
+          ctx.fillStyle = '#1c1c22';
+          for (let x = 0; x < N; x++) for (let y = 0; y < N; y++) {
+            if ((x + y) % 2) ctx.fillRect(x * cell, y * cell, cell, cell);
+          }
+          drawBug(bug[0], bug[1]);
+          // Schlange
+          snake.forEach(([x, y], i) => {
+            ctx.fillStyle = i === 0 ? '#ccff00' : i % 2 ? '#b3e600' : '#a3d100';
+            const pad = cell * 0.08;
+            roundRect(x * cell + pad, y * cell + pad, cell - pad * 2, cell - pad * 2, cell * 0.25);
+          });
+          // Augen
+          const [hx, hy] = snake[0];
+          const [dx, dy] = DIRS[dir];
+          ctx.fillStyle = '#0a0a0a';
+          for (const s of [-1, 1]) {
+            const ex = (hx + 0.5 + dx * 0.18 + dy * s * 0.2) * cell;
+            const ey = (hy + 0.5 + dy * 0.18 + dx * s * 0.2) * cell;
+            ctx.beginPath();
+            ctx.arc(ex, ey, cell * 0.08, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          // Hinweise auf dem Spielfeld
+          if (state !== 'running') {
+            ctx.fillStyle = 'rgba(11, 11, 15, 0.72)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#e4e4e7';
+            ctx.textAlign = 'center';
+            ctx.font = `700 ${cell * 1.1}px ui-monospace, Menlo, monospace`;
+            const label = { idle: '> bug-jagd.exe', paused: '|| Pause', over: 'Game over' }[state];
+            ctx.fillText(label, canvas.width / 2, canvas.height / 2);
+          }
+        }
+
+        toggle.addEventListener('click', () => {
+          if (state === 'running') { setState('paused'); messageEl.textContent = 'Pause.'; return; }
+          if (state === 'idle' || state === 'over') reset();
+          messageEl.textContent = '';
+          setState('running');
+          canvas.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+        });
+
+        document.querySelectorAll('.pad button').forEach((b) => {
+          b.addEventListener('click', () => turn(b.dataset.dir));
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (state !== 'running' && state !== 'paused') return;
+          if (KEYS[e.key]) {
+            e.preventDefault(); // Seite nicht scrollen, solange gespielt wird
+            turn(KEYS[e.key]);
+          } else if (e.key === ' ' && !(e.target instanceof HTMLButtonElement)) {
+            e.preventDefault();
+            toggle.click();
+          }
+        });
+
+        // Wischen auf dem Spielfeld
+        let touchStart = null;
+        canvas.addEventListener('touchstart', (e) => { touchStart = [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
+        canvas.addEventListener('touchend', (e) => {
+          if (!touchStart) return;
+          const dx = e.changedTouches[0].clientX - touchStart[0];
+          const dy = e.changedTouches[0].clientY - touchStart[1];
+          touchStart = null;
+          if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+          turn(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
+        });
+
+        // Tab im Hintergrund: automatisch pausieren
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden && state === 'running') { setState('paused'); messageEl.textContent = 'Pause.'; }
+        });
+
+        window.addEventListener('resize', resize);
+        reset();
+        resize();
+      })();
+    </script>
+  </body>
+</html>

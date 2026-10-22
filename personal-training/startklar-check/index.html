@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de" data-bereich="training">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kostenloser Startklar-Check: Wo stehst du, und wie fängst du an? | Suren Frey</title>
+    <meta name="description" content="Zwölf Fragen, sofort Empfehlungen für Unternehmer und Führungskräfte: ein ruhiger Einstieg in Bewegung passend zu deiner Zeit, Kalorien- und Eiweißbedarf nach Standardformeln und Export in deinen Kalender. Ohne Anmeldung, ohne E-Mail." />
+    <link rel="canonical" href="https://www.surenfrey.de/personal-training/startklar-check/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kostenloser Startklar-Check | Suren Frey" />
+    <meta property="og:description" content="Wo stehst du, und wie fängst du an? In zwei Minuten, ohne Anmeldung, mit Terminen für deinen Kalender." />
+    <meta property="og:url" content="https://www.surenfrey.de/personal-training/startklar-check/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content="https://www.surenfrey.de/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Suren Frey – Personal Training und Anwendungsentwicklung" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+    <link rel="manifest" href="../../site.webmanifest" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script type="module" src="check.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+    <header class="topnav">
+      <a class="brand" href="../../" aria-label="Startseite Suren Frey">SF_</a>
+      <nav class="segmented" aria-label="Bereiche">
+        <a href="../" aria-current="true">Coaching</a>
+        <a href="../../informatik/">Informatik</a>
+      </nav>
+      <a class="button primary topnav-cta" href="https://calendar.app.google/o5Fur34rWRrZEidT8" rel="noopener">Erstgespräch buchen<span class="sr-only"> (externe Seite)</span></a>
+    </header>
+    <main id="inhalt" tabindex="-1" class="page">
+      <div class="area-page">
+        <a class="back" href="../"><span aria-hidden="true">←</span> Zum Coaching</a>
+
+        <section class="hero-block" aria-labelledby="check-title">
+          <p class="eyebrow">Kostenloser Startklar-Check</p>
+          <h1 id="check-title">Wo stehst du, und wie fängst du an?</h1>
+          <p class="lead">
+            Tipp dich durch zwölf kurze Fragen. Danach bekommst du sofort Empfehlungen für einen ruhigen Einstieg, die in deine Zeit passen, eine
+            Auswertung zu Ernährung, Trinken, Schlaf, Stress und Alltagsbewegung und die Termine direkt für deinen Kalender.
+          </p>
+          <ul class="trust" role="list">
+            <li>Ohne Anmeldung und ohne E-Mail</li>
+            <li>Dauert etwa eine Minute</li>
+            <li>Deine Angaben bleiben in deinem Browser</li>
+          </ul>
+        </section>
+
+        <noscript>
+          <p class="notice">Der Check rechnet direkt in deinem Browser und braucht dafür JavaScript. Bitte aktiviere JavaScript oder <a href="../#kontakt">schreib mir einfach</a>.</p>
+        </noscript>
+
+        <section class="wheel-app" id="check-app" aria-labelledby="q-title">
+          <div class="wheel-head">
+            <p class="wheel-step" id="q-step">Frage 1 von 12</p>
+            <div class="wheel-progress" aria-hidden="true"><span id="q-bar"></span></div>
+            <h2 class="wheel-question" id="q-title" tabindex="-1">Für wen soll ich rechnen?</h2>
+            <p class="hint center wheel-hint" id="q-hint"></p>
+          </div>
+          <div class="wheel is-closed" id="wheel">
+            <div class="wheel-ring">
+              <svg class="wheel-deco" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <circle class="ring-bg" cx="50" cy="50" r="49" />
+                <g id="wheel-lines"></g>
+                <circle class="ring-edge" cx="50" cy="50" r="48.6" />
+                <circle class="ring-inner" cx="50" cy="50" r="24" />
+                <path class="wheel-arc" id="wheel-arc" d="" />
+              </svg>
+              <div class="wheel-segments" id="petals" role="group" aria-labelledby="q-title"></div>
+              <div class="wheel-center" aria-hidden="true">
+                <span class="wheel-center-label" id="center-label"></span>
+                <span class="wheel-center-sub" id="center-sub"></span>
+                <span class="wheel-count" id="q-count">1/12</span>
+              </div>
+            </div>
+            <form class="wheel-form" id="body-form" novalidate hidden>
+              <div class="field-row">
+                <label class="field">
+                  <span>Alter</span>
+                  <input type="number" name="age" inputmode="numeric" min="18" max="99" required autocomplete="off" />
+                  <small>Jahre</small>
+                </label>
+                <label class="field">
+                  <span>Größe</span>
+                  <input type="number" name="height" inputmode="numeric" min="130" max="230" required autocomplete="off" />
+                  <small>cm</small>
+                </label>
+                <label class="field">
+                  <span>Gewicht</span>
+                  <input type="text" name="weight" inputmode="decimal" pattern="[0-9]{2,3}([.,][0-9])?" required autocomplete="off" />
+                  <small>kg</small>
+                </label>
+              </div>
+              <button type="submit" class="button primary">Weiter</button>
+            </form>
+          </div>
+          <p class="form-error wheel-error" id="form-error" role="alert"></p>
+          <div class="wheel-nav">
+            <button type="button" class="button" id="q-back"><span aria-hidden="true">←</span> Zurück</button>
+          </div>
+          <p class="hint center">Die Berechnung läuft komplett auf deinem Gerät. Es wird nichts gespeichert oder übertragen.</p>
+        </section>
+
+        <section class="result" id="ergebnis" aria-labelledby="result-title" hidden>
+          <h2 id="result-title" tabindex="-1">Deine Auswertung</h2>
+          <div id="result-body"></div>
+        </section>
+
+        <details class="sources">
+          <summary>Wie wird gerechnet? (Quellen)</summary>
+          <ul>
+            <li><strong>Grundumsatz:</strong> Mifflin-St-Jeor-Formel (Mifflin et al., American Journal of Clinical Nutrition, 1990). Bei „keine Angabe“ der Mittelwert beider Varianten.</li>
+            <li><strong>Gesamtbedarf:</strong> Grundumsatz × PAL-Wert (Physical Activity Level) nach den Referenzwerten der <a href="https://www.dge.de/wissenschaft/referenzwerte/energie/" rel="noopener">DGE</a>, plus die geplanten Einheiten nach MET-Werten des Compendium of Physical Activities. Beim Abnehmen ein moderates Defizit, etwa 0,5 bis 1 % des Körpergewichts pro Woche.</li>
+            <li><strong>Eiweiß:</strong> DGE-Referenzwert 0,8 g/kg als Untergrenze; mit Krafttraining 1,2 bis 2,0 g/kg. Ab etwa 1,6 g/kg bringt mehr kaum zusätzlichen Muskelaufbau (<a href="https://doi.org/10.1136/bjsports-2017-097608" rel="noopener">Morton et al. 2018</a>). Verteilung von etwa 0,4 g/kg pro Mahlzeit (<a href="https://doi.org/10.1186/s12970-018-0215-1" rel="noopener">Schoenfeld &amp; Aragon 2018</a>).</li>
+            <li><strong>Trinken:</strong> Gesamtwasserzufuhr nach <a href="https://www.efsa.europa.eu/en/efsajournal/pub/1459" rel="noopener">EFSA</a>: 2,0 Liter (Frauen) bzw. 2,5 Liter (Männer) pro Tag, davon etwa 80 % aus Getränken; beim Training kommt Flüssigkeit dazu.</li>
+            <li><strong>Ernährungsqualität:</strong> mindestens 30 g Ballaststoffe sowie 3 Portionen Gemüse und 2 Portionen Obst pro Tag nach den <a href="https://www.dge.de/gesunde-ernaehrung/gut-essen-und-trinken/dge-empfehlungen/" rel="noopener">Empfehlungen der DGE</a>.</li>
+            <li><strong>Schlaf:</strong> mindestens 7 Stunden pro Nacht für Erwachsene (<a href="https://doi.org/10.5664/jcsm.4758" rel="noopener">Konsens von AASM und SRS, 2015</a>).</li>
+            <li><strong>Schritte:</strong> Der Nutzen steigt bis etwa 8.000 bis 10.000 Schritte (unter 60 Jahren) bzw. 6.000 bis 8.000 Schritte (ab 60) und flacht dann ab (<a href="https://doi.org/10.1016/S2468-2667(21)00302-9" rel="noopener">Paluch et al., Lancet Public Health 2022</a>).</li>
+            <li><strong>Bewegung und Sitzen:</strong> <a href="https://www.who.int/publications/i/item/9789240015128" rel="noopener">WHO-Leitlinie zu Bewegung und Sitzverhalten (2020)</a>: 150 bis 300 Minuten moderate Bewegung pro Woche, an zwei Tagen Krafttraining und langes Sitzen regelmäßig unterbrechen.</li>
+            <li><strong>Training:</strong> Bewusst vorsichtiger Einstieg für Erwachsene, die lange nicht trainiert haben: zweimal pro Woche schonende Kräftigung mit 10 bis 12 Wiederholungen in ruhigem Tempo, ohne bis an die Belastungsgrenze zu gehen, dazu lockere Bewegung. Steigern erst nach einigen Wochen. Einen persönlichen Plan gibt es nur im Coaching nach einem Gesundheitsfragebogen.</li>
+            <li><strong>Stress:</strong> Die Hinweise sind alltagstaugliche Gewohnheiten, keine Diagnose oder Therapie.</li>
+            <li><strong>Kalender:</strong> Die Termine werden als .ics-Datei nach dem Standard iCalendar (RFC 5545) erzeugt und funktionieren mit Outlook, Google und Apple-Kalender.</li>
+          </ul>
+          <p>Alle Werte sind Schätzungen für gesunde Erwachsene. Bei Vorerkrankungen, Verletzungen, einer Schwangerschaft oder Essstörungen sprich bitte vorher mit deiner Ärztin oder deinem Arzt.</p>
+        </details>
+      </div>
+    </main>
+
+    <footer>
+      <nav aria-label="Rechtliches">
+        <a href="../../impressum/">Impressum</a>
+        <a href="../../datenschutz/">Datenschutz</a>
+        <a href="../../agb/">AGB</a>
+        <a href="../../widerruf/">Widerruf</a>
+        <a href="../../cookies/">Cookies</a>
+        <a href="../../barrierefreiheit/">Barrierefreiheit</a>
+      </nav>
+    </footer>
+  </body>
+</html>
