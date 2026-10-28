@@ -1,0 +1,6 @@
+# Sicherheitslücke gefunden? Danke, dass du sie meldest.
+# Found a vulnerability? Thank you for reporting it.
+Contact: mailto:info@surenfrey.de
+Expires: 2027-10-21T00:00:00.000Z
+Preferred-Languages: de, en
+Canonical: https://www.surenfrey.de/.well-known/security.txt
