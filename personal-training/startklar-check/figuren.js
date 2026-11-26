@@ -1,0 +1,18 @@
+// Selbst gezeichnete, animierte Übungsfiguren (Seitenansicht, viewBox 160×120).
+// Bewegung nur per CSS (entwurf/figuren.css); läuft nur unter .ist-sichtbar und nicht unter .ist-angehalten.
+export const FIGUREN = {
+  'stuhl-aufstehen':
+    '<svg class="uebung-figur figur-stuhl-aufstehen" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M38.6 87.8H61.6M39.6 87.8V108M60.6 87.8V108M38.6 87.8L36.6 55.8"/><path d="M69 106H79"/><g class="a a1"><path d="M72 104L75.6 83.3"/><g class="a a2"><path d="M75.6 83.3L53.6 83.3"/><g class="a a3"><path class="t" d="M53.6 83.3L51.7 55.4"/><circle class="h" cx="51" cy="45.4" r="6.5"/><path d="M51.7 55.4L66.7 54.9L79.7 55.5"/></g></g></g></svg>',
+  'wand-liegestuetz':
+    '<svg class="uebung-figur figur-wand-liegestuetz" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M125.5 8V108"/><path d="M62 103L70 106.5"/><g class="a a1"><path d="M62 103L81.9 64.9"/><path class="t" d="M81.9 64.9L94.8 40"/><circle class="h" cx="99.5" cy="31.2" r="6.5"/><g class="a a2"><path d="M94.8 40L109 45"/><g class="a a3"><path d="M109 45L123 45"/></g></g></g></svg>',
+  'wadenheben':
+    '<svg class="uebung-figur figur-wadenheben" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M85.5 52.5L86.5 86H107.5M86.5 86V108M106.5 86V108"/><path d="M73 106L77 106"/><g class="a a1"><path d="M62 106L73 106M66 103L66 106"/></g><g class="a a2"><path d="M66 103L66 82L66 60"/><path class="t" d="M66 60L66 32"/><circle class="h" cx="66" cy="22" r="6.5"/><g class="a a3"><path d="M66 32L70.9 46.2"/><g class="a a4"><path d="M70.9 46.2L84 51"/></g></g></g></svg>',
+  'schulterblaetter':
+    '<svg class="uebung-figur figur-schulterblaetter" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M44 87.5H66M45 87.5V108M65 87.5V108M44 87.5L43 68"/><path d="M58 83L80 83L80 104M77 106H87"/><g class="a a1"><path class="t" d="M58 83L58 55"/><circle class="h" cx="58" cy="45" r="6.5"/><g class="a a2"><path d="M58 55L72 57"/></g><g class="a a3"><path d="M72 57L72 46"/></g></g></svg>',
+  'brustpresse':
+    '<svg class="uebung-figur figur-brustpresse" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M38 108V10H74M45 83.4L41.5 43.6M42 87H64M53 87V108"/><g class="a a1"><path class="g g2" d="M74 14L58.5 58M58.5 54V62"/></g><circle class="g g2" cx="74" cy="14" r="2"/><path d="M50 83L72 83L72 104M69 106H79"/><path class="t" d="M50 83L47.6 55.1"/><circle class="h" cx="46.7" cy="45.1" r="6.5"/><g class="a a2"><path d="M47.6 55.1L50.9 69.7"/><g class="a a3"><path d="M50.9 69.7L58.5 58"/></g></g></svg>',
+  'tuerrahmen-dehnung':
+    '<svg class="uebung-figur figur-tuerrahmen-dehnung" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><path class="g" d="M36 12H66V108"/><path d="M72 106H82"/><g class="a a1"><path d="M75 103L72 60.1"/><path class="t" d="M72 60.1L70 32.2"/><circle class="h" cx="69.3" cy="22.2" r="6.5"/></g><g class="a a2"><path d="M66.5 33.2h10"/></g><path d="M66.5 33.2L66.5 19.2"/></svg>',
+  'schulterkreisen':
+    '<svg class="uebung-figur figur-schulterkreisen" viewBox="0 0 160 120" aria-hidden="true" focusable="false"><path class="b" d="M6 108H154"/><circle class="g spur" cx="82" cy="37" r="13"/><path d="M80 103L80 82L80 60M77 106H87"/><path class="t" d="M80 60L80 32"/><circle class="h" cx="80" cy="22" r="6.5"/><g class="a a1"><path d="M82 37L94.6 33.6L83 32.5"/></g></svg>',
+};
